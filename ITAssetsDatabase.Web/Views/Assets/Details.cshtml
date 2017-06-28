@@ -276,7 +276,8 @@
                             @item.Employee.FullName
                         </td>
                         <td>
-                            <a href="../../File Uploads/@item.Uploadpath" target="_new"><img src="~/Images/Signoffsheeticon.png" style="width:19px;height:22px;border:0"></a>
+                            @*<a href="../../File Uploads/@item.Uploadpath" target="_new"><img src="~/Images/Signoffsheeticon.png" style="width:19px;height:22px;border:0"></a>*@
+                            <a href="@Url.Action("GetFileFromDisk", new { id = item.ID })"><img src="~/Images/Signoffsheeticon.png" style="width:19px;height:22px;border:0"> </a>
                         </td>
                     </tr>
                 }
