@@ -1,0 +1,5 @@
+C:\Users\Matt\Documents\DEV Projects\IT Assets DB Repo Version\IT Assets DB\ITAssetsDatabase.BusinessDomain\bin\Debug\ITAssetsDatabase.BusinessDomain.dll
+C:\Users\Matt\Documents\DEV Projects\IT Assets DB Repo Version\IT Assets DB\ITAssetsDatabase.BusinessDomain\bin\Debug\ITAssetsDatabase.BusinessDomain.pdb
+C:\Users\Matt\Documents\DEV Projects\IT Assets DB Repo Version\IT Assets DB\ITAssetsDatabase.BusinessDomain\obj\Debug\ITAssetsDatabase.BusinessDomain.dll
+C:\Users\Matt\Documents\DEV Projects\IT Assets DB Repo Version\IT Assets DB\ITAssetsDatabase.BusinessDomain\obj\Debug\ITAssetsDatabase.BusinessDomain.pdb
+C:\Users\Matt\Documents\DEV Projects\IT Assets DB Repo Version\IT Assets DB\ITAssetsDatabase.BusinessDomain\obj\Debug\ITAssetsDatabase.BusinessDomain.csprojResolveAssemblyReference.cache

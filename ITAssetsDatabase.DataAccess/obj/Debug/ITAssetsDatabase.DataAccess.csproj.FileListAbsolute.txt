@@ -1,0 +1,12 @@
+C:\Users\Matt\Documents\DEV Projects\IT Assets DB Repo Version\IT Assets DB\ITAssetsDatabase.DataAccess\bin\Debug\ITAssetsDatabase.DataAccess.dll.config
+C:\Users\Matt\Documents\DEV Projects\IT Assets DB Repo Version\IT Assets DB\ITAssetsDatabase.DataAccess\bin\Debug\ITAssetsDatabase.DataAccess.dll
+C:\Users\Matt\Documents\DEV Projects\IT Assets DB Repo Version\IT Assets DB\ITAssetsDatabase.DataAccess\bin\Debug\ITAssetsDatabase.DataAccess.pdb
+C:\Users\Matt\Documents\DEV Projects\IT Assets DB Repo Version\IT Assets DB\ITAssetsDatabase.DataAccess\bin\Debug\EntityFramework.dll
+C:\Users\Matt\Documents\DEV Projects\IT Assets DB Repo Version\IT Assets DB\ITAssetsDatabase.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Matt\Documents\DEV Projects\IT Assets DB Repo Version\IT Assets DB\ITAssetsDatabase.DataAccess\bin\Debug\ITAssetsDatabase.BusinessDomain.dll
+C:\Users\Matt\Documents\DEV Projects\IT Assets DB Repo Version\IT Assets DB\ITAssetsDatabase.DataAccess\bin\Debug\ITAssetsDatabase.BusinessDomain.pdb
+C:\Users\Matt\Documents\DEV Projects\IT Assets DB Repo Version\IT Assets DB\ITAssetsDatabase.DataAccess\bin\Debug\EntityFramework.xml
+C:\Users\Matt\Documents\DEV Projects\IT Assets DB Repo Version\IT Assets DB\ITAssetsDatabase.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Matt\Documents\DEV Projects\IT Assets DB Repo Version\IT Assets DB\ITAssetsDatabase.DataAccess\obj\Debug\ITAssetsDatabase.DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\Matt\Documents\DEV Projects\IT Assets DB Repo Version\IT Assets DB\ITAssetsDatabase.DataAccess\obj\Debug\ITAssetsDatabase.DataAccess.dll
+C:\Users\Matt\Documents\DEV Projects\IT Assets DB Repo Version\IT Assets DB\ITAssetsDatabase.DataAccess\obj\Debug\ITAssetsDatabase.DataAccess.pdb

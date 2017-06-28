@@ -1,0 +1,182 @@
+﻿@model ITAssetsDatabase.Web.ViewModels.KnowledgeBase.KBViewModel
+
+    
+@{
+    ViewBag.Title = "Knowledge";
+    
+      
+}
+
+<style>
+    /*  To line search Button with text field, set the Div Position to relative which means any elements using the position: absolute will line up
+        absolutely from the relation of the DIV and not the Parnet HTML Element
+    */
+
+    #SearchButton {
+    position: absolute;
+    top: 15px; 
+    right:0px;
+
+    }
+
+
+    
+
+</style>
+
+
+<h2>Knowledge Base</h2>
+ 
+  
+<div style="position: relative;margin-bottom:10px">
+
+    @Html.TextBox("SearchString", "", new { placeholder = "Search Knowledge" })<button id="SearchButton">Search</button>   
+    <div id="Search_EggTimer" style="display:none;position:absolute;top:23px;right:100px"><img src="~/Images/ajax-loader.gif" /></div> 
+
+</div>
+
+
+
+    
+<div style="text-align:left;padding-left:0px;margin-bottom:10px">@Html.DropDownList("ArticleTypeId", @Model.ArticleTypeId, "All")</div>          
+    
+<div style="text-align:right;padding:0px">@Html.ActionLink("Add new article", "AddArticle", null, new { target = "_blank" })</div>    
+    
+    
+
+<div id="searchresults"></div>
+
+
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    
+    <link href="~/Content/themes/base/jquery.ui.autocomplete.css" rel="stylesheet" />
+
+    <script>
+        $(document).ready(function () {  
+
+
+            $('#test').click(function () {
+                alert($('#ArticleTypeId').val())
+
+            });
+
+
+            $('#SearchString').keypress(function (event) {
+
+                if ($('#ArticleTypeId').val() == '5') {
+
+                    var numero = String.fromCharCode(event.keyCode);
+                    var myArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+                    index = myArray.indexOf(numero);// 1
+                    var longeur = $('#SearchString').val().length;
+                    if (window.getSelection) {
+                        text = window.getSelection().toString();
+                    } if (index >= 0 & text.length > 0) {
+                    } else if (index >= 0 & longeur < 10) {
+                        SearchAutocomplete();
+                    } else { return false; }
+
+                }
+                else{                
+                    SearchAutocomplete();                
+                }
+            
+            });
+         
+
+
+
+        function SearchAutocomplete() {
+
+            $('#SearchString').autocomplete({
+                    
+                source: function (request, response) {
+
+                    $('#Search_EggTimer').css('display', 'inline');
+
+                    $.ajax({
+                        url: '/KnowledgeBase/Autocomplete',
+                        dataType: "json",
+                        data: {
+                            term: request.term,
+                                ArticleTypeId:$('#ArticleTypeId').val()
+                        },
+                        success: function (data) {
+                            
+                            $('#Search_EggTimer').css('display', 'none');                            
+                            response(data);
+                        }
+                    });
+                },
+
+                select: function(event, ui) {
+                    event.preventDefault();
+                    retrieveselectedID(ui.item.value);
+                    $('#SearchString').autocomplete("close");  
+
+                },
+                focus: function(event, ui) {
+                    event.preventDefault();                    
+                }
+
+            });
+                        
+        }
+
+
+        function retrieveselectedID(id) {
+
+            $('#Search_EggTimer').css('display', 'inline');
+
+                    $.ajax({
+                        url: "/KnowledgeBase/retrieveselectedID?Id=" + id, type: "GET"
+                    }).done(function (mydata) {
+                        $('#Search_EggTimer').css('display', 'none');
+                        $("#searchresults").empty().append(mydata)
+                    });
+                };
+
+
+            $('#SearchButton').click(function() 
+                
+                {
+                        $("#searchresults").empty();
+
+                        var a = $('#SearchString').val().trim();
+                        var b = $('#ArticleTypeId').val();
+                         var selectedvalue = $('#ArticleTypeId option:selected').text();
+
+                if (a == "")
+                { alert("Please enter some search text") }
+
+                else
+                {
+                    if (selectedvalue == "All")
+                    {
+                        b = 0;
+                    }
+                
+                    $('#Search_EggTimer').css('display', 'inline');
+                    $.ajax({
+                        url: "/KnowledgeBase/SearchKB?SearchString=" + a + "&ArticleTypeId=" + b, type: "GET"
+                    }).done(function (mydata) {
+                        $('#Search_EggTimer').css('display', 'none');
+                        $("#searchresults").empty().append(mydata)
+                    });
+
+                }
+
+                
+            });
+
+          
+            
+        });
+    </script>
+}
+
+
