@@ -54,7 +54,7 @@ namespace ITAssetsDatabase.DataAccess.Repositorys.Assets
 
         //public IEnumerable<Domain> GetDomains()
         //{
-        //    return new List<Domain> { new Domain { Assets = null, DomainName = "fuck of!" } };
+        //    return new List<Domain> { new Domain { Assets = null, DomainName = "Domname" } };
         //}
 
 
