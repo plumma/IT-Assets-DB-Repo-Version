@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #fff;
+    /*background-color: #fff;*/
     border-top: solid 10px #000;
     color: #4B4B4B;
     font-size: .85em;
@@ -901,4 +901,3 @@ div.multilineinput {
    
         
     }
-

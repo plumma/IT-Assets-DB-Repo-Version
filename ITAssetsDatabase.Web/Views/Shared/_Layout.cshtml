@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>  @*Specifies HTML5*@
+﻿<!DOCTYPE html>  @*Specifies HTML5*@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -9,50 +8,165 @@
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
+
+
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />  
+            
+
+        <style>
+            .parallax-container .parallax {
+                display: initial;
+                position: initial;
+            }
+
+                .parallax-container .parallax img {
+                    display: initial;
+                    position: initial;
+                }
+
+
+            body {
+                min-height: 200vh;
+            }
+
+            .parallax-container {
+                height: 250px;
+            }
+
+            .logo {
+                font-weight: 300;
+                padding-left: 30px;
+                color: white;
+                font-size: large;
+            }
+
+            .placard_text {
+                font-weight: 300;
+                padding: 20px;
+                background: rgba(96,125,139,0.4);
+                border-radius: 10px;
+                font-size: 15px;
+                text-align: justify;
+                color: whitesmoke;
+                text-shadow: -5px 9px 8px rgba(147, 152, 163, 0.67);
+            }
+
+            /*.container {
+                max-width: 500px;
+                margin-left: 200px;
+                box-shadow: rgba(96,125,139,0.4);
+            }*/
+
+            .row {
+                width: initial;
+            }
+
+            .nav-wrapper {
+                background-color: #6c254a;
+            }
+        </style>
+
+
     </head>
     <body>
         <header>
-            <div class="content-wrapper">
-                              
-                <div class="float-left">                                      
-               <div class="logo" style="color:#6c254a;font-size:36px;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">PLUMM STUDIOS Ltd</div>
-               <div><img src="~/Images/Plumm Studios Title Bar.png" style="width:350px" /></div>
-               <p class="site-title">IT SUPPORT SOLUTIONS</p>
-                    
-                 <p></p>
-
-                </div> 
-                <div class="float-right">
-                    <section id="login">                       
-                        <span class="username"> @{Html.RenderAction("LoggedIn","LoggedIn");}</span>
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Assets", "Index", "Assets")</li>                            
-                            <li>@Html.ActionLink("Knowledge", "Index", "KnowledgeBase")</li>
-                            <li>@Html.ActionLink("READ FIRST", "ReadMe", "KnowledgeBase")</li>
+               <nav>
+                    <div class="nav-wrapper" >
+                        <text class="logo">Matt Plumley</text>
+                        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                        <ul class="right hide-on-med-and-down">
+                            <li><a href="sass.html">Sass</a></li>
+                            <li><a href="badges.html">Components</a></li>
+                            <li><a href="collapsible.html">Javascript</a></li>
+                            <li><a href="mobile.html">Mobile</a></li>
                         </ul>
+                        <ul class="side-nav" id="mobile-demo">
+                            <li><a href="sass.html">Sass</a></li>
+                            <li><a href="badges.html">Components</a></li>
+                            <li><a href="collapsible.html">Javascript</a></li>
+                            <li><a href="mobile.html">Mobile</a></li>
+                        </ul>
+                    </div>
                     </nav>
+
+
+
+            <div class="parallax-container valign-wrapper">
+
+                <div class="container placard_text">
+
+
+                    <text>Hello, my name is Matt Plumley, I'm a web applications developer please feel free to try our my applications shown below.</text>
+
+                    <div class="parallax"><img src="/Images/coffee.jpeg" style="display: block; transform: translate3d(-50%, 593px, 0px);"></div>
                 </div>
-             </div>
+            </div>
+
+
+
+        @*          
+            <div class="parallax-container valign-wrapper">
+                                
+                    <div class="container placard_text">
+                        @*<div class="row">
+                            <div class="col l8 s12 white-text">
+                                <text>Hello, my name is Matt Plumley, I'm a web applications developer please feel free to try our my applications shown below.</text>
+                            </div>
+                        </div>
+                    
+                    <text>Hello, my name is Matt Plumley, I'm a web applications developer please feel free to try our my applications shown below.</text>
+
+                        <div class="parallax"><img src="~/Images/coffee.jpeg" /></div>
+                    </div>
+                </div>
             
-            
+           
+            <div class="container">
+                <div>
+                    <h4>Applications</h4>
+                </div>
+                <div class="row">
+                    <div class="col s12 m6">
+                        <div class="card blue-grey darken-1">
+                            <div class="card-content white-text">
+                                <span class="card-title">Asset Database</span>
+                                <i class="fa fa-desktop fa-5x" aria-hidden="true"></i>
+                                <div class="divider"></div>
+                                <p>Asset Database written using C#, MVC, JQuery</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="#">This is a link</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+ 
           </header>
-        <div id="body">
+        @RenderBody()
+
+        @*<div id="body">
             @RenderSection("featured", required: false)
             <section class="content-wrapper main-content clear-fix">
                 @RenderBody()
             </section>
-        </div>
-        <footer>
+        </div>*@
+        @*<footer>
             <div class="content-wrapper">
                 <div class="float-left">
                     <p>&copy; @DateTime.Now.Year - IT Support Solutions</p>
                 </div>
             </div>
-        </footer>
+        </footer>*@
 
         @Scripts.Render("~/bundles/jquery")
+      
         @RenderSection("scripts", required: false)
+       
+        @Scripts.Render("https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js")
+        
     </body>
 </html>
+
