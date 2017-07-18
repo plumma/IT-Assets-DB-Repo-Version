@@ -39,6 +39,8 @@
         width:440px;
         background-color: #FFF7F7;      
         padding-left:27px;  
+        display:normal;
+
     }
       
 
@@ -180,6 +182,7 @@
                 <div style="position:relative" class="editor-field">
                     <div style="display:inline;position:absolute;top:13px;right:20px">@Html.ValidationMessageFor(model => model.HelpdeskRef)</div>
                     @Html.EditorFor(model => model.HelpdeskRef, new { @class = "Helpdesk" })
+
                 </div>
 
 
@@ -385,6 +388,9 @@
     <script>
 
         $(document).ready(function () {
+
+            $('select').material_select();
+
             
                     
              // LookupRequester AD
@@ -662,7 +668,9 @@
 
                     });
 
-
+            
+                    $('select').material_select();
+               
         
 
         })
