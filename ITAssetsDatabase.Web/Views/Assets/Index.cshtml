@@ -71,6 +71,8 @@
         
     }
      
+
+
     
 .numberOfAssetsPerPageDisplayedInputBox input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
 
@@ -92,36 +94,35 @@
     vertical-align:central;
 }
 
-    /*button {
-
-        width:20px;
-        height: 18px;
-    }*/
-
     select {
     display: inherit;
-    background-color: black;
+    /*background-color: #546e7a;*/
+    background-color : #2b3e46;
     width: 70px;
     padding: 5px;
     border: 1px solid #f2f2f2;
-    border-radius: 2px;
-    height: 30px;
+    border-radius: 0 5px 5px 0px;
+    height: 29px;
     color:white;
+    margin-bottom: 7px;
    
 }
 
     label {
-
-        color:white;
+        color: white;
         float: left;
-        padding-right:10px;          
+        padding: 4px 10px;
+        border: 1px solid #f2f2f2;
+        border-right: none;
+        border-radius: 5px 0px 0px 5px;
+        font-size: 12.75px;
+        font-weight: normal;
+        background-color: #2b3e46;
     }
 
     option:checked {
     display: none;
 }
-
-
 
    
 </style>
@@ -143,10 +144,7 @@
             @Html.ActionLink("Add New Asset", "Register")
         </div>
         <div style="float:right;color:white;vertical-align: middle">
-            
-            
             <label for="ChangeNumberOfAssetsPerPage">Results Per Page</label>
-
             <select id="ChangeNumberOfAssetsPerPage" name="ChangeNumberOfAssetsPerPage">
                 <option selected value="@ViewBag.numberOfAssetsPerPageDisplayed">@ViewBag.numberOfAssetsPerPageDisplayed</option>
                 <option value="10">10</option>
@@ -154,13 +152,8 @@
                 <option value="50">50</option>
                 <option value="70">70</option>
             </select>
-
-            
-      
-            
         </div>
-        
-    </div>    
+    </div>
 
     <table>
         @*<tr style="background-color:#6c254a;color:white;font-weight:bold">*@
@@ -227,24 +220,24 @@
 
         <tr style="background-color:#6c254a;color:white;height:10px">
             <td colspan="4" style="background-color:#6c254a;color:white;height:10px;text-align:left">
-            <div class="pagination_container">
-            
-                <ul class="pagination_List">
-                    <li id="First">Pagenumber&nbsp;</li>
-                    @*<li><a href="#">1</a>&nbsp;</li>
-                    <li>2&nbsp;</li>*@
-                    <li>of @ViewBag.totalNumberOfPages</li>                   
-                </ul>
+                <div class="pagination_container">
 
-            </div> 
-            
+                    <ul class="pagination_List">
+                        <li id="First">Pagenumber&nbsp;</li>
+                        @*<li><a href="#">1</a>&nbsp;</li>
+                            <li>2&nbsp;</li>*@
+                        <li>of @ViewBag.totalNumberOfPages</li>
+                    </ul>
+
+                </div>
+
             </td>
             <td colspan="4" style="background-color:#6c254a;color:white;height:10px;text-align:right">Total Number of Assets @ViewBag.totalNumberOfAssets</td>
         </tr>
 
-  
-          </table>
-    </div>
+
+    </table>
+</div>
 
 @*@using (Html.BeginForm("Create", "ProductSale", FormMethod.Get, new { @class = "form-horizontal" }))*@
 
@@ -342,7 +335,9 @@
 
            $("#ChangeNumberOfAssetsPerPage").change(function (e) {
              
-              $('#numberOfAssetsPerPageDisplayed').attr('value', $(this).val());
+               $('#numberOfAssetsPerPageDisplayed').attr('value', $(this).val());
+               $('#currentPageNumber').attr('value', 1);
+
                $("form").submit();              
 
            });
