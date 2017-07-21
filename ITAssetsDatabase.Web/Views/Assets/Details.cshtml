@@ -6,56 +6,60 @@
 }
 
 <style>
-
     tr {
-
         background-color: #e1e1e1;
-                        
     }
 
     td {
-
         border: 1px solid white;
     }
+        /*     BASE PURPLE COLOUR     #6c254a;   http://www.color-hex.com/color/6c254a    */
 
-
-
-
-    #wrapper {
-        background-color: white;
-        box-shadow: 5px 5px 5px #888888;
-        padding: 40px;
-        width: 75% 
+        body {
+        background-image: url('../../Images/Office.jpeg');
+        min-height: 100%;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
     }
 
+
+
+            #wrapper {
+        background-color: white;
+        box-shadow: 5px 5px 5px #888888;      
+        width: 65%;
+        margin: 60px auto 40px;
+        /* Fixes child DIV FormHeader collapsing top margin */
+        overflow:auto;
+    }
+
+
     input {
-        width: 400px;        
+        width: 400px;
         padding-left: 25px;
         padding: 6px 10px 7px 30px;
         font-size: 14px;
-        background-color: #FFF7F7;     
+        background-color: #FFF7F7;
     }
 
 
-    input:focus, select:focus { 
-       
-        -webkit-box-shadow: 0px 0px 0px 1px rgba(242,17,17,1);
-        -moz-box-shadow: 0px 0px 0px 1px rgba(242,17,17,1);
-        box-shadow: 0px 0px 0px 1px rgba(242,17,17,1);
+        input:focus, select:focus {
+            -webkit-box-shadow: 0px 0px 0px 1px rgba(242,17,17,1);
+            -moz-box-shadow: 0px 0px 0px 1px rgba(242,17,17,1);
+            box-shadow: 0px 0px 0px 1px rgba(242,17,17,1);
+            background-color: #f3eeee;
+        }
 
-        background-color: #f3eeee;
-	    
-    }
-    
 
     select {
-
-        height:33px;
-        width:440px;
-        background-color: #FFF7F7;      
-        padding-left:27px;  
+        height: 33px;
+        width: 440px;
+        background-color: #FFF7F7;
+        padding-left: 27px;
     }
-      
+
 
 
     #textBody {
@@ -65,7 +69,7 @@
 
     .Lookup {
         background: transparent url('../Images/icon_search_trans.png') 8px 8px no-repeat;
-        background-color: #FFF7F7;       
+        background-color: #FFF7F7;
     }
 
     .Helpdesk {
@@ -89,58 +93,32 @@
         position: relative;
     }
 
-    /*.editor-label {
-       clear: both;       
-        float: left;*/       
-       /*border:medium solid;*/
-        /*width: 30%;
-        padding-bottom:10px;
-        margin-bottom:10px;
-        
-    }*/
 
-    /*.editor-field {
-        float: right;       
-        border:thin solid;
-        width: 65%;
-        padding-bottom:10px;
-        padding-left:10px;
-        border-radius:3px;
-        margin-bottom:10px;*/
-
-
-        /*color: darkred;  */
-        /*font-weight:600;
-        background-color:#faf1f1;
-    }*/
-
-
-      .editor-label {
-       clear: both;       
-       float: left;
-       width: 30%;
-       padding-bottom:10px;
-       margin-bottom:10px;
-        
+    .editor-label {
+        clear: both;
+        float: left;
+        width: 30%;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
     }
 
     .editor-field {
         float: right;
-        width: 400px;     
+        width: 400px;
         padding: 6px 10px 7px 30px;
-        border-radius:5px;        
+        border-radius: 5px;
         margin: 5px 0 6px 0;
-        font-size: 14px;        
-        background-color:#FFF7F7;     
-        box-shadow:inset rgba(0,0,0,0.75) 0 1px 2px;
-        color:black;    
+        font-size: 14px;
+        background-color: #FFF7F7;
+        box-shadow: inset rgba(0,0,0,0.75) 0 1px 2px;
+        color: black;
     }
 
 
 
     h4 {
         margin-bottom: 40px;
-        clear:both;
+        clear: both;
         margin-top: 30px;
     }
 
@@ -155,34 +133,42 @@
     }
 
     .notes {
-         
-        border:thin solid;        
-        border-radius:5px;
-        margin-bottom:10px;     
-        padding-top:0px;     
-        height:50px;   
-        text-align:left;
-        padding:5px;
-
+        border: thin solid;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        padding-top: 0px;
+        height: 50px;
+        text-align: left;
+        padding: 5px;
     }
 
-    #myheader { 
-                float:left;
-                margin-bottom: 40px;
-                clear: both;
-                margin-top: 30px;
-                font-size: 1.1em;
-                font-weight:700
+    #myheader {
+        float: left;
+        margin-bottom: 40px;
+        clear: both;
+        margin-top: 30px;
+        font-size: 1.1em;
+        font-weight: 700;
     }
 
     #status {
-
-        float:right;
+        float: right;
         margin-bottom: 40px;
         margin-top: 30px;
-        font-size:x-large;
-        color:darkred;
+        font-size: x-large;
+        color: darkred;
     }
+
+        .FormSubjects {
+
+        font-size: 1.2em;
+        font-weight:bold;
+        color:black;
+        padding-top:30px;
+        padding-bottom:30px;
+        clear:both;float:left;
+    }
+
 
 
 
@@ -197,10 +183,14 @@
 
 
 
-<fieldset>
-   <legend>RegisterAssetViewModel</legend>
+
+
+
 
     <div id="wrapper">
+
+        <div class="FormSubjects">Request Details</div>
+
 
         <div id="textBody">
 
@@ -211,7 +201,7 @@
 
             <div id="myheader">Device Details</div>
 
-       
+
             <div class="editor-label">Status</div>
             <div class="Status">@ViewBag.status</div>
 
@@ -260,103 +250,103 @@
 
                     <td style="text-align:center;border:solid;border-width:1px;border-color:white;width:100px">Upload Date</td>
                     <td style="border:solid;border-width:1px;border-color:white;width:200px">End User</td>
-                    <td style="width:150px;border:solid;border-width:1px;border-color:white">Sheet</td>                                                            
+                    <td style="width:150px;border:solid;border-width:1px;border-color:white">Sheet</td>
                 </tr>
 
-            @if (Model.Asset.AssetSignoff.Count != 0)
-            {
+                @if (Model.Asset.AssetSignoff.Count != 0)
+                {
 
-                foreach (var item in Model.Asset.AssetSignoff)
+                    foreach (var item in Model.Asset.AssetSignoff)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(x => item.CreateDate)
+                            </td>
+                            <td>
+                                @item.Employee.FullName
+                            </td>
+                            <td>
+                                @*<a href="../../File Uploads/@item.Uploadpath" target="_new"><img src="~/Images/Signoffsheeticon.png" style="width:19px;height:22px;border:0"></a>*@
+                                <a href="@Url.Action("GetFileFromDisk", new { id = item.ID })"><img src="~/Images/Signoffsheeticon.png" style="width:19px;height:22px;border:0"> </a>
+                            </td>
+                        </tr>
+                    }
+
+                }
+
+                else
+                {
+                    <tr>
+                        <td colspan="3" style="color:black;font-style:italic">No sign off sheets uploaded for this asset</td>
+
+                    </tr>
+
+                }
+
+
+
+            </table>
+
+
+            <h4 style="padding-top:30px">Assignment Trail</h4>
+
+            <table>
+                <tr class="TableHeader">
+
+                    <td style="text-align:center;border:solid;border-width:1px;border-color:white">Date</td>
+                    <td style="border:solid;border-width:1px;border-color:white">Ref</td>
+                    <td style="width:150px;border:solid;border-width:1px;border-color:white">End User</td>
+                    <td style="width:150px;border:solid;border-width:1px;border-color:white">Requester</td>
+                    <td style="border:solid;border-width:1px;border-color:white">Tech</td>
+                    <td style="width:70px;border:solid;border-width:1px;border-color:white;width:80px">Status</td>
+                </tr>
+
+
+
+
+                @foreach (var item in Model.Audit)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(x => item.CreateDate)
+                            @Html.DisplayFor(x => item.CreatedDate)
                         </td>
                         <td>
-                            @item.Employee.FullName
+                            @item.HelpdeskRef
                         </td>
                         <td>
-                            @*<a href="../../File Uploads/@item.Uploadpath" target="_new"><img src="~/Images/Signoffsheeticon.png" style="width:19px;height:22px;border:0"></a>*@
-                            <a href="@Url.Action("GetFileFromDisk", new { id = item.ID })"><img src="~/Images/Signoffsheeticon.png" style="width:19px;height:22px;border:0"> </a>
+                            @item.EndUserFullName
                         </td>
+                        <td>
+                            @item.RequesterFullName
+                        </td>
+
+                        <td>
+                            @item.Staff
+                        </td>
+
+                        <td>
+                            @item.AssetStatus
+
+                        </td>
+
                     </tr>
+
+
                 }
-`
-            }
 
-            else
-            {
-                <tr>
-                    <td colspan="3" style="color:black;font-style:italic">No sign off sheets uploaded for this asset</td>
+            </table>
 
-                </tr>
-
-            }
+            <p style="text-align:center">
+                @Html.ActionLink("Cancel", "Index")
+            </p>
 
 
 
-                </table>
-
-
-                    <h4 style="padding-top:30px">Assignment Trail</h4>
-
-                    <table>
-                        <tr class="TableHeader">
-
-                            <td style="text-align:center;border:solid;border-width:1px;border-color:white">Date</td>
-                            <td style="border:solid;border-width:1px;border-color:white">Ref</td>
-                            <td style="width:150px;border:solid;border-width:1px;border-color:white">End User</td>
-                            <td style="width:150px;border:solid;border-width:1px;border-color:white">Requester</td>
-                            <td style="border:solid;border-width:1px;border-color:white">Tech</td>
-                            <td style="width:70px;border:solid;border-width:1px;border-color:white;width:80px">Status</td>
-                        </tr>
-
-
-
-
-                        @foreach (var item in Model.Audit)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(x => item.CreatedDate)
-                                </td>
-                                <td>
-                                    @item.HelpdeskRef
-                                </td>
-                                <td>
-                                    @item.EndUserFullName
-                                </td>
-                                <td>
-                                    @item.RequesterFullName
-                                </td>
-
-                                <td>
-                                    @item.Staff
-                                </td>
-
-                                <td>
-                                    @item.AssetStatus
-
-                                </td>
-
-                            </tr>
-
-
-                        }
-
-                    </table>
-
-                    <p style="text-align:center">
-                        @Html.ActionLink("Cancel", "Index")
-                    </p>
-
-
-
-</div>
-
-                    
         </div>
-    </fieldset>
+
+
+    </div>
+
 
 }
 
@@ -374,18 +364,18 @@
     <script src="~/Scripts/Autosize/jquery.autosize.min.js"></script>
     <script src="~/Scripts/Autosize/jquery.autosize.js"></script>
     <script src="~/Scripts/plupload-2.1.2/js/plupload.full.min.js"></script>
-    
-    
+
+
 
     <script>
 
         $(document).ready(function () {
-            
-                    
+
+
             // LookupRequester
-        
+
             $('#LookupRequester').autocomplete({
-                
+
                 source: function (request, response) {
                     var filter = $("#DomainId").val();
                     $.getJSON("/Assets/LookupPersonAutocomplete", { term: request.term, DomainId: filter }, response);
@@ -423,7 +413,7 @@
                     event.preventDefault();  // Stops the deafult action of displaying the Value rather than the label in the box after selection
                     $("#LookupEndUser").val(ui.item.label);  // Displays Label in box after selection
                     $("#AssigneeSID").val(ui.item.value);
-                    
+
                     $("#AssigneeFirstName").val(ui.item.FirstName);
                     $("#AssigneeMiddleName").val(ui.item.MiddleName);
                     $("#AssigneeSurname").val(ui.item.Surname);
@@ -496,9 +486,9 @@
                     $("#LookupBuild").val(ui.item.label);  // Displays Label in box after selection
                     $("#BuildId").val(ui.item.value);
                     $("#BuildDomain").val(ui.item.build_domain);
-                }, 
+                },
                 focus: function (event, ui) {
-                    event.preventDefault();                  
+                    event.preventDefault();
                 }
 
             });
@@ -511,12 +501,12 @@
 
 
                 // Check Location, Device, Build fields are filled in
-                
+
                 var isValid = true;
 
                 $('#LookupLocation,#LookupDeviceModel,#LookupBuild,#LocationId,#DeviceId,#BuildId').each(function () {
 
-                    if ($.trim($(this).val()) == "" || $(this).val() == 0 ) {
+                    if ($.trim($(this).val()) == "" || $(this).val() == 0) {
 
                         $(this).css({
                             "border": "1px solid red",
@@ -527,39 +517,36 @@
                         isValid = false;
                     }
 
-                    else
-
-                    {
+                    else {
                         $(this).css({
                             "border": "",
                             "background": ""
-                        });                       
-                        
+                        });
+
                     }
 
                     if (isValid == true) $("#fetcherror").css("display", "none");
-                    
+
                 });
 
 
-           
 
-                if (isValid == true)
-                {
+
+                if (isValid == true) {
                     $('#please-wait').css('display', 'block');
 
                     var LocationId = $('#LocationId').val();
                     var DeviceId = $('#DeviceId').val();
                     var StaffId = $('#StaffId').val();
                     var BuildId = $('#BuildId').val();
-          
+
                     $.ajax({
                         url: "/Assets/FetchHostname",
                         data: { LocationId: LocationId, DeviceId: DeviceId, StaffId: StaffId, BuildId: BuildId },
                         type: "GET"
                     }).done(function (mydata) {
 
-                        $('#please-wait').css('display', 'none');                                            
+                        $('#please-wait').css('display', 'none');
                         $('#HostnameId').val(mydata.Id);
                         $('#Hostname').val(mydata.FullHostname);
                         $('#Hostname').focus();
@@ -568,58 +555,58 @@
 
                 }
 
-       
-            });   
-                   
+
+            });
+
 
 
             // End of Fetch  //
-            
 
-           
+
+
             // MAC Address Autocharacters
 
-                $("#MAC_Address").live("keyup", function (event) {
-                    var limitField = $(this).val().trim().length;
-                    var limit = "17"
-                    if (event.keyCode != 8) {
-                        if (limitField == 2) {
-                            var fax_value = $(this).val().trim().concat(':');
-                            $("#MAC_Address").val(fax_value);
-                        } else if (limitField == 5) {
-                            var fax_value = $(this).val().trim().concat(':');
-                            $("#MAC_Address").val(fax_value);
-                        } else if (limitField == 8) {
-                            var fax_value = $(this).val().trim().concat(':');
-                            $("#MAC_Address").val(fax_value);
-                        } else if (limitField == 11) {
-                            var fax_value = $(this).val().trim().concat(':');
-                            $("#MAC_Address").val(fax_value);
-                        }
-                        else if (limitField == 14) {
-                            var fax_value = $(this).val().trim().concat(':');
-                            $("#MAC_Address").val(fax_value);
-                        }
+            $("#MAC_Address").live("keyup", function (event) {
+                var limitField = $(this).val().trim().length;
+                var limit = "17"
+                if (event.keyCode != 8) {
+                    if (limitField == 2) {
+                        var fax_value = $(this).val().trim().concat(':');
+                        $("#MAC_Address").val(fax_value);
+                    } else if (limitField == 5) {
+                        var fax_value = $(this).val().trim().concat(':');
+                        $("#MAC_Address").val(fax_value);
+                    } else if (limitField == 8) {
+                        var fax_value = $(this).val().trim().concat(':');
+                        $("#MAC_Address").val(fax_value);
+                    } else if (limitField == 11) {
+                        var fax_value = $(this).val().trim().concat(':');
+                        $("#MAC_Address").val(fax_value);
                     }
-                    if (limitField > limit) {
-                        $("#MAC_Address").val($(this).val().trim().substring(0, limit));
+                    else if (limitField == 14) {
+                        var fax_value = $(this).val().trim().concat(':');
+                        $("#MAC_Address").val(fax_value);
                     }
-                });
+                }
+                if (limitField > limit) {
+                    $("#MAC_Address").val($(this).val().trim().substring(0, limit));
+                }
+            });
 
 
 
             // Register Asser
 
-                $('#register').click(function () {
+            $('#register').click(function () {
 
-                        $("#thisForm").submit();
+                $("#thisForm").submit();
 
-                    });
+            });
 
 
-        
+
 
         })
     </script>
- 
+
 }
