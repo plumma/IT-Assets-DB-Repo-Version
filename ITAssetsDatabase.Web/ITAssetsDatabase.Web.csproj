@@ -388,8 +388,10 @@
     </None>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Images\ajax-loader.gif" />
+    <Content Include="Images\coffee.jpeg" />
     <Content Include="Images\csharp.png" />
     <Content Include="Images\delete_button_2x.png" />
+    <Content Include="Images\Details_Large.JPG" />
     <Content Include="Images\Details_small.jpg" />
     <Content Include="Images\divider.jpg" />
     <Content Include="Images\DocIcon.png" />
@@ -400,6 +402,7 @@
     <Content Include="Images\fetch.gif" />
     <Content Include="Images\file_c.png" />
     <Content Include="Images\icon_search.png" />
+    <Content Include="Images\icon_search_trans.png" />
     <Content Include="Images\if_DeleteRed_34218.png" />
     <Content Include="Images\if_edit-alt_383147.png" />
     <Content Include="Images\images\ajax-loader.gif" />
@@ -607,7 +610,13 @@
     <Content Include="Images\migration.jpg" />
     <Content Include="Images\migration.png" />
     <Content Include="Images\Office.jpeg" />
+    <Content Include="Images\pc.jpeg" />
     <Content Include="Images\Plumm Studios Title Bar.png" />
+    <Content Include="Images\search_icon_20black.png" />
+    <Content Include="Images\search_icon_22black.png" />
+    <Content Include="Images\search_icon_34.png" />
+    <Content Include="Images\search_trans.png" />
+    <Content Include="Images\search_trans_20px.png" />
     <Content Include="Images\Signoffsheeticon.png" />
     <Content Include="Images\Tick.png" />
     <Content Include="Images\view_grid_active.png" />
