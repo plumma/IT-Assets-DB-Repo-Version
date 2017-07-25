@@ -487,7 +487,7 @@ textarea {
 
 #SearchString {
     
-    width:860px; padding: 6px 10px 7px 30px; font-size:14px; border:none; outline:none;
+    width:750px; padding: 6px 10px 7px 30px; font-size:14px; border:none; outline:none;
 	background: transparent url('../Images/icon_search.png') 8px 8px no-repeat;
 	box-shadow:inset rgba(0,0,0,0.75) 0 1px 2px;
     border-top-left-radius: 5px;
@@ -902,4 +902,17 @@ div.multilineinput {
         box-shadow:inset rgba(0,0,0,0.75) 0 1px 2px;
    
         
+    }
+
+
+        /*  Backpage Text */
+
+    .BackPage  {
+
+        margin-top:50px;
+    }
+
+    .BackPage a, a:visited {
+       
+        color:black;
     }

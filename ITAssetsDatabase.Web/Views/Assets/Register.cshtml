@@ -136,9 +136,6 @@
     }
 
 
-
-    
-
     select {
 
         height:33px;
@@ -269,6 +266,7 @@
           border-radius: 0px;
           background-color: white;
     }
+    
 
 </style>
 
@@ -471,9 +469,10 @@
 
 }
 
-<div>
-    @Html.ActionLink("Cancel", "Index")
-</div>
+<p class="BackPage">
+    <i class="fa fa-long-arrow-left" aria-hidden="true"></i> @Html.ActionLink("Back to Assets", "Index")
+</p>
+
 
 
 <div id="please-wait">

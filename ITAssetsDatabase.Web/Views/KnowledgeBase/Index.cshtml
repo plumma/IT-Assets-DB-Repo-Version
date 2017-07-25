@@ -1,179 +1,293 @@
 ﻿@model ITAssetsDatabase.Web.ViewModels.KnowledgeBase.KBViewModel
 
-    
+
 @{
     ViewBag.Title = "Knowledge";
-    
-      
+
+
 }
 
 <style>
     /*  To line search Button with text field, set the Div Position to relative which means any elements using the position: absolute will line up
         absolutely from the relation of the DIV and not the Parnet HTML Element
-    */
+    
+        /*     BASE PURPLE COLOUR     #6c254a;   http://www.color-hex.com/color/6c254a    */
 
     #SearchButton {
-    position: absolute;
-    top: 15px; 
-    right:0px;
-
+        position: absolute;
+        top: 15px;
+        right: 0px;
     }
 
+    .layout li {
+    height: 100px;
+    padding: 20px 0 20px 0px;
+    min-height: 48px;
+    border-bottom: 1px solid #dedede;
+}
+
+    .select-wrapper span.caret {
+    color: initial;
+    position: absolute;
+    right: 680px;
+    top: 0;
+    bottom: 0;
+    height: 10px;
+    margin: auto 0;
+    font-size: 10px;
+    line-height: 10px;
+}
+
+
+    .select-wrapper input.select-dropdown {
+
+
+    position: initial;
+    cursor: pointer;
+    background-color: transparent;
+    border: 2px salmon;
+    border-bottom: 1px solid #9e9e9e;
+    outline: none;
+    height: 2rem;
+    line-height: 3rem;
+    width: 200px;
+    font-size: 1rem;
+    margin: 0 0 20px 0;
+    padding: 0;
+    display: block;
+    color: black;
+}
+
+    .dropdown-content li>span {
+  color: #000 !important;
+}
+
+.dropdown-content li>a {
+  color: #000 !important;
+}
+
+.select-content li>span {
+  color: #000 !important;
+}
+
+.select-content li>a {
+  color: #000 !important;
+}
+
+    body {
+        background-image: url('../../Images/Office.jpeg');
+        min-height: 100%;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
+      
+    }
+
+    #wrapper {
+        background-color: white;
+        box-shadow: 5px 5px 5px #888888;
+        width: 960px;
+        margin: 60px auto 150px;
+        /* Fixes child DIV FormHeader collapsing top margin */
+         overflow:visible;
+    }
+
+
+    .FormHeader {
+        font-size: 2em;
+        font-weight: bold;
+        color: white;
+        padding: 30px 30px;
+        background-color: #6c254a;
+        height: 90px;
+        text-align: center;
+        vertical-align: central;
+    }
+
+    .FormSubjects {
+        font-size: 1.2em;
+        font-weight: bold;
+        color: black;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        clear: both;
+        float: left;
+    }
+
+
+
+    #textBody {
+        /*margin: 20px; /*border:medium solid; #F8F8F8;   */
+        margin-top: 0px;
+        padding: 50px;
+        background-color: #F5F5F5;
+       
+    }
+      
+    
 </style>
 
 
-<h2>Knowledge Base</h2>
- 
-  
-<div style="position: relative;margin-bottom:10px">
+<div id="wrapper">
 
-    @Html.TextBox("SearchString", "", new { placeholder = "Search Knowledge" })<button id="SearchButton">Search</button>   
-    <div id="Search_EggTimer" style="display:none;position:absolute;top:23px;right:100px"><img src="~/Images/ajax-loader.gif" /></div> 
 
+    <div class="FormHeader">- Knowledge Base -</div>
+
+
+    <div id="textBody">
+
+
+        @*     Request Details   *@
+
+
+        <div style="position: relative;margin-bottom:10px">
+
+            @Html.TextBox("SearchString", "", new { placeholder = "Search Knowledge" })<button id="SearchButton">Search</button>
+            <div id="Search_EggTimer" style="display:none;position:absolute;top:23px;right:100px"><img src="~/Images/ajax-loader.gif" /></div>
+
+        </div>
+
+        <div style="text-align:left;padding-left:0px;margin-bottom:10px">@Html.DropDownList("ArticleTypeId", @Model.ArticleTypeId, "All")</div>
+
+        <div style="text-align:right;padding:0px">@Html.ActionLink("Add new article", "AddArticle", null, new { target = "_blank" })</div>
+
+
+        <div id="searchresults"></div>
+
+    </div>
 </div>
 
 
 
-    
-<div style="text-align:left;padding-left:0px;margin-bottom:10px">@Html.DropDownList("ArticleTypeId", @Model.ArticleTypeId, "All")</div>          
-    
-<div style="text-align:right;padding:0px">@Html.ActionLink("Add new article", "AddArticle", null, new { target = "_blank" })</div>    
-    
-    
+        @section Scripts {
 
-<div id="searchresults"></div>
+            @Scripts.Render("~/bundles/jqueryval")
+            @Scripts.Render("~/bundles/jqueryui")
 
+            <link href="~/Content/themes/base/jquery.ui.autocomplete.css" rel="stylesheet" />
 
+            <script>
+                $(document).ready(function () {
 
-@section Scripts {
-
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/jqueryui")
-    
-    <link href="~/Content/themes/base/jquery.ui.autocomplete.css" rel="stylesheet" />
-
-    <script>
-        $(document).ready(function () {  
+                    $('select').material_select();
 
 
-            $('#test').click(function () {
-                alert($('#ArticleTypeId').val())
+                    $('#test').click(function () {
+                        alert($('#ArticleTypeId').val())
 
-            });
-
-
-            $('#SearchString').keypress(function (event) {
-
-                if ($('#ArticleTypeId').val() == '5') {
-
-                    var numero = String.fromCharCode(event.keyCode);
-                    var myArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-                    index = myArray.indexOf(numero);// 1
-                    var longeur = $('#SearchString').val().length;
-                    if (window.getSelection) {
-                        text = window.getSelection().toString();
-                    } if (index >= 0 & text.length > 0) {
-                    } else if (index >= 0 & longeur < 10) {
-                        SearchAutocomplete();
-                    } else { return false; }
-
-                }
-                else{                
-                    SearchAutocomplete();                
-                }
-            
-            });
-         
+                    });
 
 
+                    $('#SearchString').keypress(function (event) {
 
-        function SearchAutocomplete() {
+                        if ($('#ArticleTypeId').val() == '5') {
 
-            $('#SearchString').autocomplete({
-                    
-                source: function (request, response) {
+                            var numero = String.fromCharCode(event.keyCode);
+                            var myArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+                            index = myArray.indexOf(numero);// 1
+                            var longeur = $('#SearchString').val().length;
+                            if (window.getSelection) {
+                                text = window.getSelection().toString();
+                            } if (index >= 0 & text.length > 0) {
+                            } else if (index >= 0 & longeur < 10) {
+                                SearchAutocomplete();
+                            } else { return false; }
 
-                    $('#Search_EggTimer').css('display', 'inline');
-
-                    $.ajax({
-                        url: '/KnowledgeBase/Autocomplete',
-                        dataType: "json",
-                        data: {
-                            term: request.term,
-                                ArticleTypeId:$('#ArticleTypeId').val()
-                        },
-                        success: function (data) {
-                            
-                            $('#Search_EggTimer').css('display', 'none');                            
-                            response(data);
                         }
+                        else {
+                            SearchAutocomplete();
+                        }
+
                     });
-                },
-
-                select: function(event, ui) {
-                    event.preventDefault();
-                    retrieveselectedID(ui.item.value);
-                    $('#SearchString').autocomplete("close");  
-
-                },
-                focus: function(event, ui) {
-                    event.preventDefault();                    
-                }
-
-            });
-                        
-        }
 
 
-        function retrieveselectedID(id) {
-
-            $('#Search_EggTimer').css('display', 'inline');
-
-                    $.ajax({
-                        url: "/KnowledgeBase/retrieveselectedID?Id=" + id, type: "GET"
-                    }).done(function (mydata) {
-                        $('#Search_EggTimer').css('display', 'none');
-                        $("#searchresults").empty().append(mydata)
-                    });
-                };
 
 
-            $('#SearchButton').click(function() 
-                
-                {
+                    function SearchAutocomplete() {
+
+                        $('#SearchString').autocomplete({
+
+                            source: function (request, response) {
+
+                                $('#Search_EggTimer').css('display', 'inline');
+
+                                $.ajax({
+                                    url: '/KnowledgeBase/Autocomplete',
+                                    dataType: "json",
+                                    data: {
+                                        term: request.term,
+                                        ArticleTypeId: $('#ArticleTypeId').val()
+                                    },
+                                    success: function (data) {
+
+                                        $('#Search_EggTimer').css('display', 'none');
+                                        response(data);
+                                    }
+                                });
+                            },
+
+                            select: function (event, ui) {
+                                event.preventDefault();
+                                retrieveselectedID(ui.item.value);
+                                $('#SearchString').autocomplete("close");
+
+                            },
+                            focus: function (event, ui) {
+                                event.preventDefault();
+                            }
+
+                        });
+
+                    }
+
+
+                    function retrieveselectedID(id) {
+
+                        $('#Search_EggTimer').css('display', 'inline');
+
+                        $.ajax({
+                            url: "/KnowledgeBase/retrieveselectedID?Id=" + id, type: "GET"
+                        }).done(function (mydata) {
+                            $('#Search_EggTimer').css('display', 'none');
+                            $("#searchresults").empty().append(mydata)
+                        });
+                    };
+
+
+                    $('#SearchButton').click(function () {
                         $("#searchresults").empty();
 
                         var a = $('#SearchString').val().trim();
                         var b = $('#ArticleTypeId').val();
-                         var selectedvalue = $('#ArticleTypeId option:selected').text();
+                        var selectedvalue = $('#ArticleTypeId option:selected').text();
 
-                if (a == "")
-                { alert("Please enter some search text") }
+                        if (a == "")
+                        { alert("Please enter some search text") }
 
-                else
-                {
-                    if (selectedvalue == "All")
-                    {
-                        b = 0;
-                    }
-                
-                    $('#Search_EggTimer').css('display', 'inline');
-                    $.ajax({
-                        url: "/KnowledgeBase/SearchKB?SearchString=" + a + "&ArticleTypeId=" + b, type: "GET"
-                    }).done(function (mydata) {
-                        $('#Search_EggTimer').css('display', 'none');
-                        $("#searchresults").empty().append(mydata)
+                        else
+                        {
+                            if (selectedvalue == "All") {
+                                b = 0;
+                            }
+
+                            $('#Search_EggTimer').css('display', 'inline');
+                            $.ajax({
+                                url: "/KnowledgeBase/SearchKB?SearchString=" + a + "&ArticleTypeId=" + b, type: "GET"
+                            }).done(function (mydata) {
+                                $('#Search_EggTimer').css('display', 'none');
+                                $("#searchresults").empty().append(mydata)
+                            });
+
+                        }
+
+
                     });
 
-                }
 
-                
-            });
 
-          
-            
-        });
-    </script>
-}
+                });
+            </script>
+        }
 
 

@@ -6,12 +6,72 @@
 }
 
 <style>
+
+
+    
+    /*     BASE PURPLE COLOUR     #6c254a;   http://www.color-hex.com/color/6c254a    */
+
+        body {
+        background-image: url('../../Images/Office.jpeg');
+        min-height: 100%;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
+    }
+
+    #wrapper {
+        background-color: white;
+        box-shadow: 5px 5px 5px #888888;      
+        width: 65%;
+        margin: 60px auto 40px;
+        /* Fixes child DIV FormHeader collapsing top margin */
+        overflow:auto;
+    }
+
+
+   .FormHeader {
+
+        font-size: 2em;
+        font-weight:bold;
+        color:white;    
+        padding: 30px 30px;
+        background-color: #6c254a;        
+        height: 90px;
+        text-align:center;
+        vertical-align:central;
+        
+       
+    }
+
+    .FormSubjects {
+
+        font-size: 1.2em;
+        font-weight:bold;
+        color:black;
+        padding-top:30px;
+        padding-bottom:30px;
+        clear:both;float:left;
+    }
+
+
+    
+    #textBody {
+        margin: 20px; /*border:medium solid;*/
+        margin-top: 0px;
+        padding:30px;
+    }
+
+
+
     tr {
         background-color: #e1e1e1;
     }
 
     td {
         border: 1px solid white;
+        padding:3px;
+        text-align:center;
     }
         /*     BASE PURPLE COLOUR     #6c254a;   http://www.color-hex.com/color/6c254a    */
 
@@ -54,12 +114,14 @@
 
 
     select {
-        height: 33px;
-        width: 440px;
-        background-color: #FFF7F7;
-        padding-left: 27px;
+        background-color: rgba(255,255,255,0.9);
+        width: 200px;
+        padding: 5px;
+        border: 1px solid #f2f2f2;
+        border-radius: 2px;
+        height: 2.2rem;
+        display: inline;
     }
-
 
 
     #textBody {
@@ -159,17 +221,39 @@
         color: darkred;
     }
 
-        .FormSubjects {
+    
 
-        font-size: 1.2em;
-        font-weight:bold;
-        color:black;
-        padding-top:30px;
-        padding-bottom:30px;
-        clear:both;float:left;
+    input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
+
+    background-color: #F1F1F1;
+    border: thin;
+    border-bottom: 1px solid #9e9e9e;
+    border-radius: 2px;
+    outline: none;
+    height :30px;
+    width: 450px;
+    font-size: 1rem;
+    margin: 0 0 20px 0;
+    padding: 0;
+    padding-left:50px;
+    box-shadow: none;
+    box-sizing: content-box;
+    transition: all 0.3s;
+    color: black;
+    text-align: left;
+    vertical-align:central;
+}
+
+    input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #6c254a;  
+    box-shadow: 0 1px 0 0 #6c254a;  
+
     }
 
-
+    input:not([type]).valid, input:not([type]):focus.valid, input[type=text]:not(.browser-default).valid, input[type=text]:not(.browser-default):focus.valid, input[type=password]:not(.browser-default).valid, input[type=password]:not(.browser-default):focus.valid, input[type=email]:not(.browser-default).valid, input[type=email]:not(.browser-default):focus.valid, input[type=url]:not(.browser-default).valid, input[type=url]:not(.browser-default):focus.valid, input[type=time]:not(.browser-default).valid, input[type=time]:not(.browser-default):focus.valid, input[type=date]:not(.browser-default).valid, input[type=date]:not(.browser-default):focus.valid, input[type=datetime]:not(.browser-default).valid, input[type=datetime]:not(.browser-default):focus.valid, input[type=datetime-local]:not(.browser-default).valid, input[type=datetime-local]:not(.browser-default):focus.valid, input[type=tel]:not(.browser-default).valid, input[type=tel]:not(.browser-default):focus.valid, input[type=number]:not(.browser-default).valid, input[type=number]:not(.browser-default):focus.valid, input[type=search]:not(.browser-default).valid, input[type=search]:not(.browser-default):focus.valid, textarea.materialize-textarea.valid, textarea.materialize-textarea:focus.valid {
+    border-bottom: 1px solid #c4a7b6;
+    box-shadow: 0 1px 0 0 #c4a7b6;
+}
 
 
 </style>
@@ -181,25 +265,18 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-
-
-
-
-
-
+    
     <div id="wrapper">
 
-        <div class="FormSubjects">Request Details</div>
+        <div class="FormHeader">- Asset Details -</div>
 
 
         <div id="textBody">
 
-            <h2 style="text-align:center">Asset Details</h2>
-
-
+            
             @*     Request Details   *@
 
-            <div id="myheader">Device Details</div>
+            <div class="FormSubjects">Device Details</div>
 
 
             <div class="editor-label">Status</div>
@@ -242,7 +319,7 @@
             <div class="editor-label">Registered By</div>
             <div class="editor-field">@Html.DisplayFor(model => model.Asset.Staff.FullName)</div>
 
-            <h4 style="padding-top:30px">Signoff Sheets</h4>
+            <div class="FormSubjects">Signoff Sheets</div>
 
 
             <table>
@@ -287,8 +364,9 @@
 
             </table>
 
+            <div class="FormSubjects">Assignment Trail</div>
 
-            <h4 style="padding-top:30px">Assignment Trail</h4>
+           
 
             <table>
                 <tr class="TableHeader">
@@ -336,8 +414,8 @@
 
             </table>
 
-            <p style="text-align:center">
-                @Html.ActionLink("Cancel", "Index")
+            <p class="BackPage">
+                <i class="fa fa-long-arrow-left" aria-hidden="true"></i> @Html.ActionLink("Back to Assets", "Index")
             </p>
 
 
@@ -370,6 +448,8 @@
     <script>
 
         $(document).ready(function () {
+
+            $('select').material_select();
 
 
             // LookupRequester
@@ -603,7 +683,9 @@
 
             });
 
-
+            
+       
+            
 
 
         })
