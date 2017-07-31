@@ -172,43 +172,67 @@
 
                     $('select').material_select();
 
-
-                    $('#test').click(function () {
-                        alert($('#ArticleTypeId').val())
-
-                    });
-
-
-                    $('#SearchString').keypress(function (event) {
-
-                        if ($('#ArticleTypeId').val() == '5') {
-
-                            var numero = String.fromCharCode(event.keyCode);
-                            var myArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-                            index = myArray.indexOf(numero);// 1
-                            var longeur = $('#SearchString').val().length;
-                            if (window.getSelection) {
-                                text = window.getSelection().toString();
-                            } if (index >= 0 & text.length > 0) {
-                            } else if (index >= 0 & longeur < 10) {
-                                SearchAutocomplete();
-                            } else { return false; }
-
-                        }
-                        else {
-                            SearchAutocomplete();
-                        }
-
-                    });
+                    // Start
+                                   
+                    //$('#SearchString').keypress(function (event) {
+                                            
+                    //    if ($('#ArticleTypeId').val() == '5') {
 
 
+                    //        var number = String.fromCharCode(event.keyCode);
+                    //        var myArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+                    //        index = myArray.indexOf(number);// 1
+                    //        var length = $('#SearchString').val().length;
+                    //        if (window.getSelection) {
+                    //            text = window.getSelection().toString();
+                    //        } if (index >= 0 & text.length > 0) {
+                    //            alert("part1");
+                    //        } else if (index >= 0 & length < 10) {
+                                
+                    //            SearchAutocomplete();
+                    //        } else {
 
+                    //            alert("flase");
+                    //            return false;
+                    //        }
 
-                    function SearchAutocomplete() {
+                    //    }
+                    //    else {
+                            
+                    //        SearchAutocomplete();
+                    //    }
 
-                        $('#SearchString').autocomplete({
+                    //});
+                    
+                    // Autocomplete function mm
+                    
+                    //function SearchAutocomplete() {        
+                    
+                
 
+                    $('#SearchString').autocomplete(
+                        {
                             source: function (request, response) {
+
+                                if ($('#ArticleTypeId').val() == '5') {
+
+                                    var input = $('#SearchString').val();
+                                    var numofCharacters = $('#SearchString').val().length;
+                                    var myArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+                                    var index = 0;
+                                    var checkresult = 0;
+
+                                    while (checkresult != -1 && index < numofCharacters) {
+
+                                        checkresult = myArray.indexOf(input.charAt(index))
+                                        index++;
+                                    }
+                                    if (checkresult == -1) {
+
+                                        alert("Please enter numerical characters only");
+                                        return false;
+                                    }
+                                }
 
                                 $('#Search_EggTimer').css('display', 'inline');
 
@@ -220,7 +244,6 @@
                                         ArticleTypeId: $('#ArticleTypeId').val()
                                     },
                                     success: function (data) {
-
                                         $('#Search_EggTimer').css('display', 'none');
                                         response(data);
                                     }
@@ -236,10 +259,65 @@
                             focus: function (event, ui) {
                                 event.preventDefault();
                             }
-
                         });
+                });
 
-                    }
+
+                //    $('#SearchString').autocomplete({                            
+                            
+                //        source: function (request, response) {
+
+
+                //            if ($('#ArticleTypeId').val() == '5') {
+
+                //                var number = String.fromCharCode(event.keyCode);
+                //                var myArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+                //                index = myArray.indexOf(number);// 1
+                //                var length = $('#SearchString').val().length;
+
+                //                if (index == -1)
+
+                //                //if (window.getSelection) {
+                //                //    text = window.getSelection().toString();
+                //                //} if (index >= 0 & text.length > 0) {
+                //                //} else if (index >= 0 & length < 10) {
+                //                //    SearchAutocomplete();
+                //                //} else { return false; }
+
+                //            }
+
+                //            else {
+
+                          
+                //                $('#Search_EggTimer').css('display', 'inline');
+
+                //                $.ajax({
+                //                    url: '/KnowledgeBase/Autocomplete',
+                //                    dataType: "json",
+                //                    data: {
+                //                        term: request.term,
+                //                        ArticleTypeId: $('#ArticleTypeId').val()
+                //                    },
+                //                    success: function (data) {
+                //                        $('#Search_EggTimer').css('display', 'none');
+                //                        response(data);
+                //                    }
+                //                });
+                //            },
+
+                //            select: function (event, ui) {
+                //                event.preventDefault();
+                //                retrieveselectedID(ui.item.value);
+                //                $('#SearchString').autocomplete("close");
+
+                //            },
+                //            focus: function (event, ui) {
+                //                event.preventDefault();
+                //            }
+                //        });
+                 
+                //}
+         
 
 
                     function retrieveselectedID(id) {
@@ -286,7 +364,7 @@
 
 
 
-                });
+             
             </script>
         }
 
