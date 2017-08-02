@@ -153,6 +153,10 @@
         <div style="text-align:right;padding:0px">@Html.ActionLink("Add new article", "AddArticle", null, new { target = "_blank" })</div>
 
 
+     
+        @*<div id="log">This:</div>
+        <div id="log1">This:</div>*@
+
         <div id="searchresults"></div>
 
     </div>
@@ -172,67 +176,57 @@
 
                     $('select').material_select();
 
-                    // Start
-                                   
-                    //$('#SearchString').keypress(function (event) {
-                                            
-                    //    if ($('#ArticleTypeId').val() == '5') {
 
 
-                    //        var number = String.fromCharCode(event.keyCode);
-                    //        var myArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-                    //        index = myArray.indexOf(number);// 1
-                    //        var length = $('#SearchString').val().length;
-                    //        if (window.getSelection) {
-                    //            text = window.getSelection().toString();
-                    //        } if (index >= 0 & text.length > 0) {
-                    //            alert("part1");
-                    //        } else if (index >= 0 & length < 10) {
-                                
-                    //            SearchAutocomplete();
-                    //        } else {
+                    //   Clear search box when user chooses to search via article ID
 
-                    //            alert("flase");
-                    //            return false;
-                    //        }
+                    (function () {
+                        var previous;
+                        var newone;
 
-                    //    }
-                    //    else {
-                            
-                    //        SearchAutocomplete();
-                    //    }
+                        $("#ArticleTypeId").focus(function () {
 
-                    //});
-                    
-                    // Autocomplete function mm
-                    
-                    //function SearchAutocomplete() {        
-                    
-                
+                            // Store the current value on focus and on change
+                            previous = this.value;
 
+                        }).change(function () {
+
+                            newone = this.value;
+
+                            if (newone == 5) {
+
+                                $('#SearchString').val('');
+                                $('#SearchString').attr('placeholder', 'Enter Article Id');
+
+                            }
+                            else if (previous == 5) {
+
+                                $('#SearchString').val('');
+                                $('#SearchString').attr('placeholder', 'Search Knowledge');
+
+                            }
+
+                            previous = this.value;
+                        });
+
+                    })();
+
+                    // Check Keys entered before output to input box
+                    $('#SearchString').keypress(function (event) {
+                        if ($('#ArticleTypeId').val() == '5') {
+                            var number = String.fromCharCode(event.keyCode);
+                            var myArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+                            index = myArray.indexOf(number);// 1
+                            if (index === -1)
+                                return false;
+                            return true;
+                        }
+                    });
+
+                    // Autocomplete function 
                     $('#SearchString').autocomplete(
                         {
                             source: function (request, response) {
-
-                                if ($('#ArticleTypeId').val() == '5') {
-
-                                    var input = $('#SearchString').val();
-                                    var numofCharacters = $('#SearchString').val().length;
-                                    var myArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-                                    var index = 0;
-                                    var checkresult = 0;
-
-                                    while (checkresult != -1 && index < numofCharacters) {
-
-                                        checkresult = myArray.indexOf(input.charAt(index))
-                                        index++;
-                                    }
-                                    if (checkresult == -1) {
-
-                                        alert("Please enter numerical characters only");
-                                        return false;
-                                    }
-                                }
 
                                 $('#Search_EggTimer').css('display', 'inline');
 
@@ -263,105 +257,48 @@
                 });
 
 
-                //    $('#SearchString').autocomplete({                            
-                            
-                //        source: function (request, response) {
 
 
-                //            if ($('#ArticleTypeId').val() == '5') {
 
-                //                var number = String.fromCharCode(event.keyCode);
-                //                var myArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-                //                index = myArray.indexOf(number);// 1
-                //                var length = $('#SearchString').val().length;
+                function retrieveselectedID(id) {
 
-                //                if (index == -1)
+                    $('#Search_EggTimer').css('display', 'inline');
 
-                //                //if (window.getSelection) {
-                //                //    text = window.getSelection().toString();
-                //                //} if (index >= 0 & text.length > 0) {
-                //                //} else if (index >= 0 & length < 10) {
-                //                //    SearchAutocomplete();
-                //                //} else { return false; }
-
-                //            }
-
-                //            else {
-
-                          
-                //                $('#Search_EggTimer').css('display', 'inline');
-
-                //                $.ajax({
-                //                    url: '/KnowledgeBase/Autocomplete',
-                //                    dataType: "json",
-                //                    data: {
-                //                        term: request.term,
-                //                        ArticleTypeId: $('#ArticleTypeId').val()
-                //                    },
-                //                    success: function (data) {
-                //                        $('#Search_EggTimer').css('display', 'none');
-                //                        response(data);
-                //                    }
-                //                });
-                //            },
-
-                //            select: function (event, ui) {
-                //                event.preventDefault();
-                //                retrieveselectedID(ui.item.value);
-                //                $('#SearchString').autocomplete("close");
-
-                //            },
-                //            focus: function (event, ui) {
-                //                event.preventDefault();
-                //            }
-                //        });
-                 
-                //}
-         
+                    $.ajax({
+                        url: "/KnowledgeBase/retrieveselectedID?Id=" + id, type: "GET"
+                    }).done(function (mydata) {
+                        $('#Search_EggTimer').css('display', 'none');
+                        $("#searchresults").empty().append(mydata)
+                    });
+                };
 
 
-                    function retrieveselectedID(id) {
+                $('#SearchButton').click(function () {
+                    $("#searchresults").empty();
+
+                    var a = $('#SearchString').val().trim();
+                    var b = $('#ArticleTypeId').val();
+                    var selectedvalue = $('#ArticleTypeId option:selected').text();
+
+                    if (a == "")
+                    { alert("Please enter some search text") }
+
+                    else
+                    {
+                        if (selectedvalue == "All") {
+
+                            b = 0;
+                        }
 
                         $('#Search_EggTimer').css('display', 'inline');
-
                         $.ajax({
-                            url: "/KnowledgeBase/retrieveselectedID?Id=" + id, type: "GET"
+                            url: "/KnowledgeBase/SearchKB?SearchString=" + a + "&ArticleTypeId=" + b, type: "GET"
                         }).done(function (mydata) {
                             $('#Search_EggTimer').css('display', 'none');
                             $("#searchresults").empty().append(mydata)
                         });
-                    };
-
-
-                    $('#SearchButton').click(function () {
-                        $("#searchresults").empty();
-
-                        var a = $('#SearchString').val().trim();
-                        var b = $('#ArticleTypeId').val();
-                        var selectedvalue = $('#ArticleTypeId option:selected').text();
-
-                        if (a == "")
-                        { alert("Please enter some search text") }
-
-                        else
-                        {
-                            if (selectedvalue == "All") {
-                                b = 0;
-                            }
-
-                            $('#Search_EggTimer').css('display', 'inline');
-                            $.ajax({
-                                url: "/KnowledgeBase/SearchKB?SearchString=" + a + "&ArticleTypeId=" + b, type: "GET"
-                            }).done(function (mydata) {
-                                $('#Search_EggTimer').css('display', 'none');
-                                $("#searchresults").empty().append(mydata)
-                            });
-
-                        }
-
-
-                    });
-
+                    }
+                });
 
 
              
