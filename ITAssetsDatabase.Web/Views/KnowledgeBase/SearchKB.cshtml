@@ -10,6 +10,17 @@
 
 <style>
 
+    h3 {
+        font-size: 1.2rem;
+        line-height: 110%;
+        margin: 1.46rem 0 1.168rem 0;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+
+
         .layout {
                 
         margin-top:15px;
@@ -36,7 +47,7 @@
          border:0px;
          padding:0px;
 
-         
+        
     }
 
 
@@ -46,7 +57,8 @@
     }
     
      .layout li {                
-     height: 53px; padding: 20px 0 20px 0px;
+     height: 100px; 
+     padding: 20px 45px 20px 0px;
      min-height:48px; 
      border-bottom:1px solid #dedede;         
     }
@@ -82,6 +94,8 @@
         /*border: 1px solid magenta;*/        
         /*width: 80%;*/
         /*height: 53px;*/
+        font-size: 15px;
+        
     }
 
   #right h3 {
@@ -93,6 +107,7 @@
         margin:0px;
         border:0px;
         padding:0px;
+        
     }
 
 
@@ -105,6 +120,7 @@
         margin:0px;
         border:0px;
         padding:0px;
+        font-size:13px;
         
     }
 
@@ -192,8 +208,13 @@
 	background-image:linear-gradient(to bottom, #f6f6f6 0%, #dddfdf 100%);
 }
 
-
+    a,a:visited, a:link {
+        color: black;
+    }
     </style>
+
+
+
 
 @if (Model.Count() == 0)
 {
@@ -269,7 +290,7 @@
                             
                             <div id="right">
 
-                                <div style="font-weight: bold;font-size: 1.17em;padding-bottom:5px">
+                                <div style="font-weight: bold;padding-bottom:5px">
                                     @Html.ActionLink(item.Summary, "Details", new { id = item.id }, new { target = "_blank" }) <span style="font-weight: normal;font-style: italic;font-size:small"> (Id = @Html.DisplayFor(modelItem => item.id)) </span>
                                 </div>
 

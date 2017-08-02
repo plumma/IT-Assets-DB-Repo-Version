@@ -19,6 +19,22 @@ namespace ITAssetsDatabase.DataAccess.Repositorys.Assets
             return (db.Assets.ToList());
         }
 
+        // Total Asset count
+ 
+
+        public int GetTotalAssetCount()
+        {
+            return (db.Assets.Count());
+        }
+
+
+        // Get Assets SKipped
+        public List<Asset> GetSetNumberOfAssets(int skipCount, int takeCount)  
+        {
+
+            return (db.Assets.OrderByDescending(x => x.CreateDate).Skip(skipCount).Take(takeCount).ToList());            
+        }
+        
 
         // Get Asset By ID
         public Asset GetAssetById(int? id)
@@ -79,6 +95,6 @@ namespace ITAssetsDatabase.DataAccess.Repositorys.Assets
             GC.SuppressFinalize(this);
         }
 
-
+    
     }    
 }

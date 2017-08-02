@@ -4,22 +4,130 @@
     ViewBag.Title = "Index";
 }
 
-.<style>
+<style>
+    body {
+        /*min-height: 300vh;*/
+        background-image: url('../../Images/Office.jpeg');
+        min-height: 100%;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
+    }
 
-.grayout {
-    opacity: 0.6; /* Real browsers */
-    filter: alpha(opacity = 60); /* MSIE */
-    pointer-events: none;
-   cursor: default;
+    .grayout {
+        opacity: 0.6; /* Real browsers */
+        filter: alpha(opacity = 60); /* MSIE */
+        pointer-events: none;
+        cursor: default;
+    }
+
+    tr a:link {
+        color: black;
+    }
+
+    tr a:visited {
+        color: black;
+    }
+
+    tr a:hover {
+        color: #b5809c;
+    }
+
+    tr li {
+        font-size: 20px;
+    }
+
+
+    .confbuttons td {
+        padding-top: 15px;
+    }
+
+    td, th {
+        text-align: center;
+        padding:8px;
+        border-radius: 0px;
+    }
+      
+    .content-wrapper {
+        margin: 10px auto 300px;
+    }
+
+    .pagination_container ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 2px;
+    overflow: hidden;
+    /*background-color: #333333;*/
+    
+
+    }
+
+    .pagination_container li {
+       
+        /*border: 1px solid white;*/
+        float: left;
+        font-size: 15px;
+        
+    }
+     
+
+
+    
+.numberOfAssetsPerPageDisplayedInputBox input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
+
+    background-color: #F1F1F1;
+    border: thin;
+    border-bottom: 1px solid #9e9e9e;
+    border-radius: 2px;
+    outline: none;
+    height :18px;
+    width: 25px;
+    font-size: 1rem;
+    margin: 0 0 20px 0;
+    padding: 0;
+    box-shadow: none;
+    box-sizing: content-box;
+    transition: all 0.3s;
+    color: black;
+    text-align: center;
+    vertical-align:central;
 }
 
+    select {
+    display: inherit;
+    /*background-color: #546e7a;*/
+    background-color : #2b3e46;
+    width: 70px;
+    padding: 5px;
+    border: 1px solid #f2f2f2;
+    border-radius: 0 5px 5px 0px;
+    height: 29px;
+    color:white;
+    margin-bottom: 7px;
+   
+}
 
-.confbuttons td {
+    label {
+        color: white;
+        float: left;
+        padding: 4px 10px;
+        border: 1px solid #f2f2f2;
+        border-right: none;
+        border-radius: 5px 0px 0px 5px;
+        font-size: 12.75px;
+        font-weight: normal;
+        background-color: #2b3e46;
+    }
 
-            padding-top:15px;
-     }
+    option:checked {
+    display: none;
+}
 
+   
 </style>
+
+
 
 @helper AlternateBackground(string color)
 {
@@ -29,63 +137,118 @@
 }
 
 
+<div class="content-wrapper">
 
-<p>
-    @Html.ActionLink("Create New", "Register")
-</p>
-<table>
-    @*<tr style="background-color:#6c254a;color:white;font-weight:bold">*@
-    <tr class="TableHeader">
+    <div style="padding-bottom:15px;padding-top:20px;align-content:center">
+        <div style="float:left">
+            @Html.ActionLink("Add New Asset", "Register")
+        </div>
+        <div style="float:right;color:white;vertical-align: middle">
+            <label for="ChangeNumberOfAssetsPerPage">Results Per Page</label>
+            <select id="ChangeNumberOfAssetsPerPage" name="ChangeNumberOfAssetsPerPage">
+                <option selected value="@ViewBag.numberOfAssetsPerPageDisplayed">@ViewBag.numberOfAssetsPerPageDisplayed</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="70">70</option>
+            </select>
+        </div>
+    </div>
 
-        <td style="text-align:center;width:60px;border:solid;border-width:1px;border-color:white;width:20px">Logged</td>
-        <td style="width:110px;border:solid;border-width:1px;border-color:white;width:140px">End User</td>
-        <td style="width:70px;border:solid;border-width:1px;border-color:white">Helpdesk Ref</td>
-        <td style="border:solid;border-width:1px;border-color:white">@Html.DisplayNameFor(model => model.Type)</td>
-        <td style="width:100px;border:solid;border-width:1px;border-color:white;width:80px">@Html.DisplayNameFor(model => model.Make)</td>
-        <td style="border:solid;border-width:1px;border-color:white">@Html.DisplayNameFor(model => model.Model)</td>
-        <td style="width:160px;border:solid;border-width:1px;border-color:white;width:90px">@Html.DisplayNameFor(model => model.Status)</td>
-        <td style="border:solid;border-width:1px;border-color:white;width:170px">Action</td>
+    <table>
+        <tr class="TableHeader">
+            <td style="text-align:center;width:60px;border:solid;border-width:1px;border-color:white;width:20px">Logged</td>
+            <td style="width:110px;border:solid;border-width:1px;border-color:white;width:140px">End User</td>
+            <td style="width:70px;border:solid;border-width:1px;border-color:white">Helpdesk Ref</td>
+            <td style="border:solid;border-width:1px;border-color:white">@Html.DisplayNameFor(model => model.Type)</td>
+            <td style="width:100px;border:solid;border-width:1px;border-color:white;width:80px">@Html.DisplayNameFor(model => model.Make)</td>
+            <td style="border:solid;border-width:1px;border-color:white">@Html.DisplayNameFor(model => model.Model)</td>
+            <td style="width:160px;border:solid;border-width:1px;border-color:white;width:90px">@Html.DisplayNameFor(model => model.Status)</td>
+            <td style="border:solid;border-width:1px;border-color:white;width:100px">Action</td>
+        </tr>
 
-
+       
 
         @foreach (var item in Model)
-        {
-        <tr @AlternateBackground("#F1F1F1")>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreateDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndUserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HelpdeskRef)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Make)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id })|
-                @Html.ActionLink("Details", "Details", new { id = item.Id })|
-                <a class="ConfirmDelete" id=@item.Id href="#/">Delete</a>
+            {
+            <tr class="Page1" @AlternateBackground("#F1F1F1")>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDate)
                 </td>
-            
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndUserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HelpdeskRef)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Make)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "Assets", new { id = item.Id })" title="Edit Asset"><img src="~/Images/if_edit-alt_383147.png"  style="vertical-align: middle"></a>
+                    |
+
+                    <a href="@Url.Action("Details", "Assets", new { id = item.Id })" title="Asset Details"><img src="~/Images/Details_small.jpg" style="vertical-align: middle"></a>
+                    |
+                    <a class="ConfirmDelete" id=@item.Id href="#/" title="Delete Asset"><img src="~/Images/if_DeleteRed_34218.png" style="vertical-align:middle" /> </a>
+                </td>
+
             </tr>
+
             <tr class="confbuttons" id="Append_@item.Id"></tr>
-        @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+
         }
 
-   
+        <tr style="background-color:white;color:gray">
+
+            <td colspan="8"></td>
+        </tr>
+
+
+
+
+        <tr style="background-color:#6c254a;color:white;height:10px">
+            <td colspan="4" style="background-color:#6c254a;color:white;height:10px;text-align:left">
+                <div class="pagination_container">
+
+                    <ul class="pagination_List">
+                        <li id="First">Pagenumber&nbsp;</li>
+                        @*<li><a href="#">1</a>&nbsp;</li>
+                            <li>2&nbsp;</li>*@
+                        <li>of @ViewBag.totalNumberOfPages</li>
+                    </ul>
+
+                </div>
+
+            </td>
+            <td colspan="4" style="background-color:#6c254a;color:white;height:10px;text-align:right">Total Number of Assets @ViewBag.totalNumberOfAssets</td>
+        </tr>
+
 
     </table>
+</div>
+
+@*@using (Html.BeginForm("Create", "ProductSale", FormMethod.Get, new { @class = "form-horizontal" }))*@
+
+@using (Html.BeginForm("Index", "Assets", FormMethod.Get))
+{
+    <input type="hidden" id="currentPageNumber" name="currentPageNumber" value="@ViewBag.currentPageNumber" />
+    <input type="hidden" id="numberOfAssetsPerPageDisplayed" name="numberOfAssetsPerPageDisplayed" value="@ViewBag.numberOfAssetsPerPageDisplayed" />
+}
+
+<input type="hidden" id="totalNumberOfAssets" value="@ViewBag.totalNumberOfAssets" />
+<input type="hidden" id="totalNumberOfPages" value="@ViewBag.totalNumberOfPages" />
+<input type="hidden" id="currentBlockOfPages" value="1" />
+<input type="hidden" id="numberOfPagesPerBlock" value="3" />
 
 
 @section Scripts {
@@ -98,25 +261,100 @@
     <script src="~/Scripts/Autosize/jquery.autosize.js"></script>
     
 
-    <script>
-        $(document).ready(function () {
+   <script>
+       $(document).ready(function () {
+
+           
+           // Initial Page Number Load
+
+           var totalNumberOfPages = $("#totalNumberOfPages").val();
+           var numberOfPagesPerBlock = $("#numberOfPagesPerBlock").val();
+           var currentPageNumber = $("#currentPageNumber").val();
+
+           var i = 1;
+           
+           var Liststring = "";
+
+           while (i <= totalNumberOfPages && i <= numberOfPagesPerBlock) {
+
+               ListElementHTML = '<li class=\"PageNumber\" id=\"' + i + '\"><a href=\"#\">' + i + '&nbsp;</a></li>';
+               ListElementHTMLCurrentPage = "<li class=\"currentPageNumber\" id=\"" + i + "\">" + i + "&nbsp;</li>";               
+               
+                   if (i == currentPageNumber)
+                       Liststring += ListElementHTMLCurrentPage;
+                   else
+                       Liststring += ListElementHTML;                       
+
+                   i++;
+           }
+     
+           $("#First").after(Liststring);
+
+
+           //if (totalNumberOfPages > numberOfPagesPerBlock)
+           //    $("#" + numberOfPagesPerBlock).after("<li id=\"NextBlock\"><a href=\"#\">...&nbsp;</li>");
+
+           //while (i <= totalNumberOfPages && i <= numberOfPagesPerBlock) {  
+
+
+           //    ListElementHTML = '<li class=\"PageNumber\" id=\"' + i + '\"><a href=\"#\")">' + i + '&nbsp;</li>';
+           //    ListElementHTMLCurrentPage = "<li class=\"currentPageNumber\" id=\"" + i + "\">" + i + "&nbsp;</li>";
+
+           //    var ListElementId = i - 1;
+
+           //    if (i == 1) {
+           //        if (i == currentPageNumber)
+           //            $("#First").after(ListElementHTMLCurrentPage);
+           //        else
+           //            $("#First").after(ListElementHTML);
+           //    }
+           //    else if (i == currentPageNumber)
+           //        $("#" + ListElementId).after(ListElementHTMLCurrentPage);
+           //    else
+           //        $("#" + ListElementId).after(ListElementHTML);
+
+           //    i++;
+           //}
+
+           //if (totalNumberOfPages > numberOfPagesPerBlock)
+           //    $("#" + numberOfPagesPerBlock).after("<li id=\"NextBlock\"><a href=\"#\">...&nbsp;</li>");
+
+           // Page Clicks
+
+           $(".PageNumber").click(function (e) {
+
+               $('#currentPageNumber').attr('value', $(this).attr('id'));
+               $("form").submit();
+
+           });
+
+
+           // Change Number of Results Per Page displayed
+
+           $("#ChangeNumberOfAssetsPerPage").change(function (e) {
+             
+               $('#numberOfAssetsPerPageDisplayed').attr('value', $(this).val());
+               $('#currentPageNumber').attr('value', 1);
+
+               $("form").submit();              
+
+           });
+
 
             $(".ConfirmDelete").click(function (e) {
-                    
-                    $(this).closest('tr').addClass('active');
-                    
-                    $('table tbody').each(function () {
-                    $(this).find('tr').each(function ()
 
-                    {
+                $(this).closest('tr').addClass('active');
+
+                $('table tbody').each(function () {
+                    $(this).find('tr').each(function () {
                         var rowclass = $(this).attr("class");
-                        if ( !(rowclass == "active" || rowclass == "confbuttons" || rowclass == "TableHeader"))
-                        $(this).addClass('grayout');
+                        if (!(rowclass == "active" || rowclass == "confbuttons" || rowclass == "TableHeader"))
+                            $(this).addClass('grayout');
                     }
 
                     )
                 });
-           
+
 
                 var asset = this.id;
 
@@ -137,14 +375,13 @@
         $(document).on('click', 'button', function (e) {
 
             var buttonpressed = $(this).attr("id");
-            
-            if ( buttonpressed == "yes")
-            {
+
+            if (buttonpressed == "yes") {
                 var id = $('#assetid').val();
 
                 $.ajax({
                     url: "/Assets/ConfirmDelete",
-                    data:{ id : id},
+                    data: { id: id },
                     async: true
                 }).success(
                     function () {
@@ -153,10 +390,10 @@
                 );
 
             }
-                        
-        else{
+
+            else {
                 $(this).closest('tr').empty();
-                 
+
                 $('table tbody tr').each(function () {
                     $(this).removeClass('grayout')
                     $(this).removeClass('active')
@@ -166,11 +403,12 @@
 
         });
 
-    
 
 
-    
- </script>
+
+
+</script>
 
 }
+
 

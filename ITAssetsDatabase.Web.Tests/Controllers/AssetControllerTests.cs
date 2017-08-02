@@ -21,6 +21,9 @@ namespace ITAssetsDatabase.Web.Tests.Controllers
         private string _number = "1";
 
 
+
+
+
         [TestInitialize]
         public void InitializeTest()
         {
@@ -109,19 +112,19 @@ namespace ITAssetsDatabase.Web.Tests.Controllers
         }
 
 
-        [TestMethod]
-        public void Should_Index()
-        {
-            //Arrange
+        //[TestMethod]
+        //public void Should_Index()
+        //{
+        //    //Arrange
 
 
-            //Act
-            var result = _assetsController.Index();
+        //    //Act
+        //    var result = _assetsController.Index();
 
-            //Assert            
+        //    //Assert            
 
-            Assert.IsInstanceOfType(result, typeof(ViewResult));
-        }
+        //    Assert.IsInstanceOfType(result, typeof(ViewResult));
+        //}
 
 
         [TestMethod]

@@ -9,6 +9,7 @@ Hosting on IIS Express:
    a) Set "Anonymous Authentication" to "Disabled".
    b) Set "Windows Authentication" to "Enabled".
 
+
 Hosting on IIS 7 or later:
 1. Open IIS Manager and navigate to your website.
 2. In Features View, double-click Authentication.
@@ -30,3 +31,5 @@ Hosting on IIS 7 or later:
 4. In the Actions pane, click Enable to use Windows authentication.
 5. On the Authentication page, select Anonymous authentication.
 6. In the Actions pane, click Disable to disable anonymous authentication.
+
+This is a github test

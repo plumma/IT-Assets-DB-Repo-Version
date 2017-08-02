@@ -9,50 +9,133 @@
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
+
+        <style>
+        .nav-wrapper {
+        background-color: #6c254a;
+        }
+
+      .logo {
+        font-weight: 300;
+        margin-left: 40px;
+        color: white;
+        font-size: 24px;
+        
+    }
+                    
+            a:link {
+                   color: white;
+            }
+            a:visited {
+            color: white;
+            }   
+            a:hover {
+            color: #b5809c;
+            }
+                 
+            li {
+                
+                font-size:20px;
+        }
+
+
+</style>
+
+   
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+
     </head>
     <body>
         <header>
-            <div class="content-wrapper">
-                              
-                <div class="float-left">                                      
-               <div class="logo" style="color:#6c254a;font-size:36px;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">PLUMM STUDIOS Ltd</div>
-               <div><img src="~/Images/Plumm Studios Title Bar.png" style="width:350px" /></div>
-               <p class="site-title">IT SUPPORT SOLUTIONS</p>
-                    
-                 <p></p>
+            @*<div class="content-wrapper">
 
-                </div> 
-                <div class="float-right">
-                    <section id="login">                       
-                        <span class="username"> @{Html.RenderAction("LoggedIn","LoggedIn");}</span>
-                    </section>
-                    <nav>
-                        <ul id="menu">
-                            <li>@Html.ActionLink("Assets", "Index", "Assets")</li>                            
-                            <li>@Html.ActionLink("Knowledge", "Index", "KnowledgeBase")</li>
-                            <li>@Html.ActionLink("READ FIRST", "ReadMe", "KnowledgeBase")</li>
-                        </ul>
-                    </nav>
+       <div class="float-left">
+      <div class="logo" style="color:#6c254a;font-size:36px;font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">PLUMM STUDIOS Ltd</div>
+      <div><img src="~/Images/Plumm Studios Title Bar.png" style="width:350px" /></div>
+      <p class="site-title">IT SUPPORT SOLUTIONS</p>
+
+        <p></p>
+
+       </div>
+       @*<div class="float-right">
+           <section id="login">
+               <span class="username"> @{Html.RenderAction("LoggedIn","LoggedIn");}</span>
+           </section>
+           <nav>
+               <ul id="menu">
+                   <li>@Html.ActionLink("Assets", "Index", "Assets")</li>
+                   <li>@Html.ActionLink("Knowledge", "Index", "KnowledgeBase")</li>
+                   <li>@Html.ActionLink("READ FIRST", "ReadMe", "KnowledgeBase")</li>
+               </ul>
+           </nav>
+       </div>
+    </div>*@
+
+            <nav>
+                <div class="nav-wrapper">
+
+                    <ul class="left logo">
+                        <li><a href="@Url.Action("Index", "Home")"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a></li>                        
+                    </ul>
+
+
+
+
+
+
+                    @*<text class="logo"><a href="home">Matt Plumley</a></text>*@
+                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+
+             
                 </div>
-             </div>
+            </nav>
             
-            
+            @*<ul class="right hide-on-med-and-down">
+            <li><a href="sass.html">Assets Database</a></li>
+            <li><a href="badges.html">Knowledgebase</a></li>
+            <li><a href="collapsible.html">About Me</a></li>
+
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+            <li><a href="sass.html">Assets Database</a></li>
+            <li><a href="badges.html">Knowledgebase</a></li>
+            <li><a href="collapsible.html">About Me</a></li>
+        </ul>*@
+
+
+
+
+
           </header>
-        <div id="body">
+
+        @RenderBody()
+
+        @*<div id="body">
             @RenderSection("featured", required: false)
             <section class="content-wrapper main-content clear-fix">
                 @RenderBody()
             </section>
-        </div>
+        </div>*@
         <footer>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - IT Support Solutions</p>
+                    <p>&copy; @DateTime.Now.Year - Plumm Studios Ltd</p>
                 </div>
             </div>
         </footer>
 
         @Scripts.Render("~/bundles/jquery")
         @RenderSection("scripts", required: false)
+        @Scripts.Render("https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js")
     </body>
 </html>
+
+@*<script>
+
+    $(document).ready(function () {
+        $('.parallax').parallax();
+    });
+
+</script>*@

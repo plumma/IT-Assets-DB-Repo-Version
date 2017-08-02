@@ -59,11 +59,46 @@ namespace ITAssetsDatabase.Web.Controllers
 
         //string CurrentlyLoggedin = System.Web.HttpContext.Current.User.Identity.Name.ToLower();
 
-        public ActionResult Index()
+        public ActionResult Index(int currentPageNumber = 1, int numberOfAssetsPerPageDisplayed = 10)
         {
+
+            int totalNumberOfAssets = _assetRepository.GetTotalAssetCount();
+            int totalNumberOfPages = 0;
+             
+            int pageNumberCount; 
+            int pageNumberCountDiff; 
+            
+            if (totalNumberOfAssets == 0)
+            {
+                totalNumberOfPages = 0;
+
+            }
+            else if (totalNumberOfAssets <= numberOfAssetsPerPageDisplayed)
+            {
+                totalNumberOfPages = 1;
+            }
+            else
+            {
+                pageNumberCount = totalNumberOfAssets / numberOfAssetsPerPageDisplayed;
+
+                pageNumberCountDiff = totalNumberOfAssets % numberOfAssetsPerPageDisplayed;
+
+                if (pageNumberCountDiff == 0)
+                    totalNumberOfPages = pageNumberCount;
+                else
+                    totalNumberOfPages = pageNumberCount  + 1;
+            }
+
+            ViewBag.numberOfAssetsPerPageDisplayed = numberOfAssetsPerPageDisplayed;
+            ViewBag.totalNumberOfAssets = totalNumberOfAssets;
+            ViewBag.currentPageNumber = currentPageNumber;
+            ViewBag.totalNumberOfPages = totalNumberOfPages;
+
             var model = new List<AssetsViewModel>();
 
-            var query = _assetRepository.GetAllAssets();
+             var skipCount = (currentPageNumber - 1) * numberOfAssetsPerPageDisplayed;
+
+            var query = _assetRepository.GetSetNumberOfAssets(skipCount, numberOfAssetsPerPageDisplayed);
 
             string EndUserName = null;
             string HelpdeskRef = null;
@@ -114,6 +149,9 @@ namespace ITAssetsDatabase.Web.Controllers
                 model.Add(viewModel);
                 
             }
+
+
+            ViewBag.count = model.Count();
 
             return View(model);
         }
